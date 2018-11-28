@@ -2,19 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FilmCrawler.Features.TestQuery;
+using FilmCrawler.Infrastructure.CQRS.CommandBase.Interfaces;
+using FilmCrawler.Infrastructure.CQRS.QueryBase.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmCrawler.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesController : BaseApiController
     {
+
+        public ValuesController(ICommandHandlerFactory commandHandlerFactory, IQueryHandlerFactory queryHandlerFactory) : base(commandHandlerFactory, queryHandlerFactory)
+        {
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<TestQueryResult>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _queryHandlerFactory.ResolveAndExecuteAsync<TestQuery, TestQueryResult>(new TestQuery());
         }
 
         // GET api/values/5
@@ -41,5 +49,6 @@ namespace FilmCrawler.Controllers
         public void Delete(int id)
         {
         }
+
     }
 }
