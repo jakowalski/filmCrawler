@@ -1,8 +1,10 @@
 ﻿using Autofac;
 using FilmCrawler.AutofacModules;
+using FilmCrawler.DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +23,7 @@ namespace FilmCrawler
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
         }
         // ConfigureContainer is where you can register things directly
         // with Autofac. This runs after ConfigureServices so the things
