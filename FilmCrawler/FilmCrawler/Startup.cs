@@ -35,7 +35,7 @@ namespace FilmCrawler
         {
             builder.RegisterModule(new CommandModule());
             builder.RegisterModule(new QueryModule());
-
+            builder.RegisterModule(new CommonServicesModule());
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

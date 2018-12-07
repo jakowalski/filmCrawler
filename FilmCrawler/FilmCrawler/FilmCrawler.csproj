@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AutofacModules\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -15,6 +14,7 @@
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="FileHelpers" Version="3.3.0" />
     <PackageReference Include="FluentValidation" Version="8.0.101" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
