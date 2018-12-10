@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Threading.Tasks;
 using FilmCrawler.Features.ParseImdbMovieCommand;
 using FilmCrawler.Infrastructure.CQRS.CommandBase.Interfaces;
 using FilmCrawler.Infrastructure.CQRS.QueryBase.Interfaces;
@@ -17,9 +18,9 @@ namespace FilmCrawler.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post(string fileName)
+        public async Task Post(string fileName)
         {
-            _commandHandlerFactory.ResolveAndExecuteAsync(new ParseImdbMovieCommand(fileName));
+            await _commandHandlerFactory.ResolveAndExecuteAsync(new ParseImdbMovieCommand(fileName));
         }
 
     }
