@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FilmCrawler.Infrastructure.CQRS.Base;
@@ -7,6 +8,7 @@ using FilmCrawler.Services.Interfaces;
 using FluentValidation;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FilmCrawler.Features.ParseImdbMovieCommand
 {
@@ -37,8 +39,30 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
                 
                 if (schemaScript != null)
                 {
-                    var ss = new JsonSerializer();
-                    var deserializedSchemaScript=JsonConvert.DeserializeObject(schemaScript.InnerText);
+                    
+                    var parseResult = JObject.Parse(schemaScript.InnerText);
+
+
+                    var contextResult = parseResult["@context"].ToString();
+                    var typeResult = parseResult["@type"].ToString();
+                    var urlResult = parseResult["url"].ToString();
+                    var nameResult = parseResult["name"].ToString();
+                    var durationResult = parseResult["duration"].ToString();
+                    var genreResult = parseResult["genre"].ToString().Replace("\r\n", string.Empty).Split(",").ToList();
+                    var contenRatingResult = parseResult["contentRating"].ToString();
+
+                    // var reviewRatingType = parseResult["reviewRating"]["@type"].ToString();
+                    //var reviewRatingWorstRating = parseResult["reviewRating"]["worstRating"].ToString();
+                    //var reviewRatingBestRating = parseResult["reviewRating"]["bestRating"].ToString();
+
+                    //var reviewRatingRatingValue = parseResult["reviewRating"]["ratingValue"].ToString();
+
+
+
+                    foreach (var c in parseResult.Children())
+                    {
+
+                    }
                 }
 
             }
@@ -51,5 +75,12 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
             //    }
             //}
         }
+    }
+    public class RatingResult
+    {
+        public string Type { get; set; }
+        public string WorstRating { get; set; }
+        public string BestRating { get; set; }
+        public string RatingValue { get; set; }        
     }
 }

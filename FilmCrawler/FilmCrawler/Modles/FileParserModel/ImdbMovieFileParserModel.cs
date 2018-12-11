@@ -8,6 +8,7 @@ namespace FilmCrawler.Modles.FileParserModel
 
     public class ImdbMovieFileParserModel
     {
+        public string Context { get; set; }
         public string TitleId { get; set; }
 
         public string Title { get; set; }
