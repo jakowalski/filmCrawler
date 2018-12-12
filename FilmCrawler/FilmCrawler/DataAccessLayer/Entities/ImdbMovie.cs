@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace FilmCrawler.DataAccessLayer.Entities
 {
@@ -11,10 +9,26 @@ namespace FilmCrawler.DataAccessLayer.Entities
 
         public string Title { get; set; }
 
-        public string Region  { get; set; }
+        public string Url { get; set; }
 
-        public string Language { get; set; }
+        public string Genre { get; set; }
+        public string Duration { get; set; }
+      
+        public string Description { get; set; }
+        public string DatePublished { get; set; }
+        public string Keywords { get; set; }
 
-        public bool IsOriginalTitle { get; set; }
+        public  ICollection<Actor> Actors { get; set; }
+        public  ICollection<Director> Directors { get; set; }
+
+        public  ICollection<Creator> Creators { get; set; }
+
+        public  AggregateRating AggregateRating { get; set; }
+        public  Review Review { get; set; }
+
     }
 }
+
+
+
+
