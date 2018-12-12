@@ -6,7 +6,7 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
     {
         public ParseImdbMovieValidator()
         {
-            RuleFor(c => c.Filename).NotEmpty();
+            RuleFor(c => c.FilmId).NotEmpty();
         }
     }
 }

@@ -4,11 +4,11 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
 {
     public class ParseImdbMovieCommand:ICommand
     {
-        public string Filename { get; set; }
+        public string FilmId { get; set; }
 
         public ParseImdbMovieCommand(string filename)
        {
-            Filename = filename;
+            FilmId = filename;
         }
     }
 }
