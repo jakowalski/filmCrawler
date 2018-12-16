@@ -24,6 +24,24 @@ namespace FilmCrawler.Converters
             {
                 retVal = serializer.Deserialize(reader, objectType);
             }
+            else if( reader.TokenType==JsonToken.String)
+            {
+                var localValue=(T)serializer.Deserialize(reader, typeof(T));
+                retVal = new List<T>() { localValue };
+
+            }
+            else if (reader.TokenType == JsonToken.Boolean)
+            {
+                retVal = serializer.Deserialize(reader, typeof(bool));
+            }
+            else if (reader.TokenType == JsonToken.Float)
+            {
+                retVal = serializer.Deserialize(reader, typeof(float));
+            }
+            else if (reader.TokenType == JsonToken.Integer)
+            {
+                retVal = serializer.Deserialize(reader,typeof(Int32));
+            }
             return retVal;
         }
 

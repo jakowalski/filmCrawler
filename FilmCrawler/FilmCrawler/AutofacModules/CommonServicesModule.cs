@@ -2,9 +2,6 @@
 using Autofac;
 using FilmCrawler.DataAccessLayer;
 using FilmCrawler.Infrastructure.CQRS.CommandBase;
-using FilmCrawler.Infrastructure.CQRS.CommandBase.Interfaces;
-using FilmCrawler.Services;
-using FilmCrawler.Services.Interfaces;
 using FluentValidation;
 using Module = Autofac.Module;
 
@@ -15,8 +12,7 @@ namespace FilmCrawler.AutofacModules
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-
-            builder.RegisterType<FileParserProvider>().As<IFileParserProvider>().InstancePerLifetimeScope();
+           
             var myAssembly = Assembly.GetExecutingAssembly();
 
             //Validators
@@ -27,7 +23,9 @@ namespace FilmCrawler.AutofacModules
               builder.RegisterType<AutofacValidatorFactory>().As<IValidatorFactory>().InstancePerLifetimeScope();
 
             //Context
-            builder.RegisterType<FilmCrawlerDatabaseContext>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<FilmCrawlerDatabaseContext>()
+            .WithParameter("options", FilmCrawlerDbContextFactory.GetDbOptions())
+            .InstancePerLifetimeScope();
         }
     }
 }

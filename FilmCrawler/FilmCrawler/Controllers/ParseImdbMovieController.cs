@@ -18,9 +18,10 @@ namespace FilmCrawler.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task Post(string fileName)
+        public async Task<IActionResult> Post(string fileName)
         {
             await _commandHandlerFactory.ResolveAndExecuteAsync(new ParseImdbMovieCommand(fileName));
+            return Ok();
         }
 
     }

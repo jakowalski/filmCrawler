@@ -1,6 +1,4 @@
-﻿
-
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FilmCrawler.Infrastructure.CQRS.Base;
 
 namespace FilmCrawler.Features.TestQuery

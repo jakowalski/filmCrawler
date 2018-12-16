@@ -14,9 +14,141 @@ namespace FilmCrawler.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Actor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actor");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.ActorImdbMovie", b =>
+                {
+                    b.Property<int>("ActorId");
+
+                    b.Property<int>("ImdbMovieId");
+
+                    b.HasKey("ActorId", "ImdbMovieId");
+
+                    b.HasIndex("ImdbMovieId");
+
+                    b.ToTable("ActorMovie");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.AggregateRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BestRating");
+
+                    b.Property<int>("ImdbMovieId");
+
+                    b.Property<int>("RatingCount");
+
+                    b.Property<string>("RatingValue");
+
+                    b.Property<string>("WorstRating");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImdbMovieId")
+                        .IsUnique();
+
+                    b.ToTable("AggregateRating");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Creator", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Creator");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.CreatorImdbMovie", b =>
+                {
+                    b.Property<int>("CreatorId");
+
+                    b.Property<int>("ImdbMovieId");
+
+                    b.HasKey("CreatorId", "ImdbMovieId");
+
+                    b.HasIndex("ImdbMovieId");
+
+                    b.ToTable("CreatorMovie");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Director", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Director");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.DirectorMovie", b =>
+                {
+                    b.Property<int>("DirectorId");
+
+                    b.Property<int>("ImdbMovieId");
+
+                    b.HasKey("DirectorId", "ImdbMovieId");
+
+                    b.HasIndex("ImdbMovieId");
+
+                    b.ToTable("DirectorMovie");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genre");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.GenreImdbMovie", b =>
+                {
+                    b.Property<int>("GenreId");
+
+                    b.Property<int>("ImdbMovieId");
+
+                    b.HasKey("GenreId", "ImdbMovieId");
+
+                    b.HasIndex("ImdbMovieId");
+
+                    b.ToTable("GenreMovie");
+                });
 
             modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.ImdbMovie", b =>
                 {
@@ -24,19 +156,199 @@ namespace FilmCrawler.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsOriginalTitle");
+                    b.Property<string>("DatePublished");
 
-                    b.Property<string>("Language");
+                    b.Property<string>("Description");
 
-                    b.Property<string>("Region");
+                    b.Property<string>("Duration");
+
+                    b.Property<string>("Keywords");
 
                     b.Property<string>("SiteId");
 
                     b.Property<string>("Title");
 
+                    b.Property<string>("Url");
+
                     b.HasKey("Id");
 
                     b.ToTable("ImdbMovie");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.ItemReviewed", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ReviewId");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReviewId")
+                        .IsUnique();
+
+                    b.ToTable("ItemReviewed");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("ReviewId");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReviewId")
+                        .IsUnique();
+
+                    b.ToTable("Person");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DateCreated");
+
+                    b.Property<int>("ImdbMovieId");
+
+                    b.Property<string>("InLanguage");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("ReviewBody");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImdbMovieId")
+                        .IsUnique();
+
+                    b.ToTable("Review");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.ReviewRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BestRating");
+
+                    b.Property<string>("RatingValue");
+
+                    b.Property<int>("ReviewId");
+
+                    b.Property<string>("WorstRating");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReviewId")
+                        .IsUnique();
+
+                    b.ToTable("ReviewRating");
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.ActorImdbMovie", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.Actor", "Actor")
+                        .WithMany("ActorMovies")
+                        .HasForeignKey("ActorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.ImdbMovie", "ImdbMovie")
+                        .WithMany("Actors")
+                        .HasForeignKey("ImdbMovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.AggregateRating", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.ImdbMovie", "ImdbMovie")
+                        .WithOne("AggregateRating")
+                        .HasForeignKey("FilmCrawler.DataAccessLayer.Entities.AggregateRating", "ImdbMovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.CreatorImdbMovie", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.Creator", "Creator")
+                        .WithMany("CreatorMovies")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.ImdbMovie", "ImdbMovie")
+                        .WithMany("Creators")
+                        .HasForeignKey("ImdbMovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.DirectorMovie", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.Director", "Director")
+                        .WithMany("DirectorMovies")
+                        .HasForeignKey("DirectorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.ImdbMovie", "ImdbMovie")
+                        .WithMany("Directors")
+                        .HasForeignKey("ImdbMovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.GenreImdbMovie", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.Genre", "Genre")
+                        .WithMany("GenreImdbMovies")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.ImdbMovie", "ImdbMovie")
+                        .WithMany("Genres")
+                        .HasForeignKey("ImdbMovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.ItemReviewed", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.Review", "Review")
+                        .WithOne("ItemReviewed")
+                        .HasForeignKey("FilmCrawler.DataAccessLayer.Entities.ItemReviewed", "ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Person", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.Review", "Review")
+                        .WithOne("Author")
+                        .HasForeignKey("FilmCrawler.DataAccessLayer.Entities.Person", "ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.Review", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.ImdbMovie", "ImdbMovie")
+                        .WithOne("Review")
+                        .HasForeignKey("FilmCrawler.DataAccessLayer.Entities.Review", "ImdbMovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmCrawler.DataAccessLayer.Entities.ReviewRating", b =>
+                {
+                    b.HasOne("FilmCrawler.DataAccessLayer.Entities.Review", "Review")
+                        .WithOne("ReviewRating")
+                        .HasForeignKey("FilmCrawler.DataAccessLayer.Entities.ReviewRating", "ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
