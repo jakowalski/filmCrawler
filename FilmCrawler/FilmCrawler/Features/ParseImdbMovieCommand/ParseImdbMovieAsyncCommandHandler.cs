@@ -42,8 +42,6 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
 
                     var existedMovie=_dbContext.ImdbMovie.FirstOrDefault(p => p.Url == movieModel.Url);
 
-
-
                     if (existedMovie != null)
                         return;
 
