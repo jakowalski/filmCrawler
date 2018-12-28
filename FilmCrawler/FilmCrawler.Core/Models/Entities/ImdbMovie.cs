@@ -1,9 +1,7 @@
-﻿using System;
+﻿using FilmCrawler.Core.Modles;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using FilmCrawler.Modles;
 
-namespace FilmCrawler.DataAccessLayer.Entities
+namespace FilmCrawler.Core.Models.Entities
 {
     public class ImdbMovie:BaseEntity
     {
@@ -79,58 +77,7 @@ namespace FilmCrawler.DataAccessLayer.Entities
             Review = review;
         }
 
-        internal static ImdbMovie CreateImdbMovie(ImdbMovieDto movieModel)
-        {
-            var actors = new List<Actor>();
-            foreach (var actor in movieModel.Actor)
-            {
-                actors.Add(new Actor(actor.name, actor.url));
-            }
-
-            var directors = new List<Director>();
-            foreach (var director in movieModel.Director)
-            {
-                directors.Add(new Director(director.name, director.url));
-            }
-
-            var creators = new List<Creator>();
-            foreach (var creator in movieModel.Creator)
-            {
-                creators.Add(new Creator(creator.url));
-            }
-
-            var genres = new List<Genre>();
-            foreach (var genre in movieModel.Genre)
-            {
-                genres.Add(new Genre(genre));
-            }
-            return new ImdbMovie();
-            //return new ImdbMovie(movieModel.Name,
-            //                     movieModel.Url,
-            //                     genres,
-            //                     movieModel.Duration,
-            //                     movieModel.Description,
-            //                     movieModel.DatePublished,
-            //                     movieModel.Keywords,
-            //                     actors,
-            //                     directors,
-            //                     creators,
-            //                    new AggregateRating(movieModel.AggregateRating.RatingCount,
-            //                                                                 movieModel.AggregateRating.WorstRating,
-            //                                                                 movieModel.AggregateRating.BestRating,
-            //                                                                 movieModel.AggregateRating.RatingValue),
-            //                    new Review(movieModel.Review.Name,
-            //                               movieModel.Review.ReviewBody,
-            //                               movieModel.Review.InLanguage,
-            //                               movieModel.Review.DateCreated,
-            //                               new ItemReviewed(movieModel.Review.ItemReviewed.Url),
-            //                               new Person(movieModel.Review.Author.url,movieModel.Review.Author.name),
-            //                               new ReviewRating(movieModel.Review.ReviewRating.WorstRating,
-            //                                                movieModel.Review.ReviewRating.BestRating,
-            //                                                movieModel.Review.ReviewRating.RatingValue)));
-        }
-
-        internal static ImdbMovie CreateImdbMovie(ImdbMovieDto movieModel, List<Actor> actorsDb, List<Genre> genresDb, List<Director> directoresDb, List<Creator> creatorsDb)
+        public static ImdbMovie CreateImdbMovie(ImdbMovieDto movieModel, List<Actor> actorsDb, List<Genre> genresDb, List<Director> directoresDb, List<Creator> creatorsDb)
         {
             var result = new ImdbMovie(movieModel.Name,
                                        movieModel.Url,
@@ -147,7 +94,7 @@ namespace FilmCrawler.DataAccessLayer.Entities
                                            movieModel.Review?.InLanguage,
                                            movieModel.Review?.DateCreated,
                                            new ItemReviewed(movieModel.Review?.ItemReviewed.Url),
-                                           new Person(movieModel.Review?.Author?.url, movieModel.Review?.Author?.name),
+                                           new Person(movieModel.Review?.Author?.Url, movieModel.Review?.Author?.Name),
                                            new ReviewRating(movieModel.Review?.ReviewRating?.WorstRating,
                                                             movieModel.Review?.ReviewRating?.BestRating,
                                                             movieModel.Review?.ReviewRating?.RatingValue)));

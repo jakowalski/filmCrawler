@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FilmCrawler.DataAccessLayer.Entities
+namespace FilmCrawler.Core.Models.Entities
 {
     public class Review:BaseEntity
     {

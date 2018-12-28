@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmCrawler.Core.Models.Entities;
+using FilmCrawler.Core.Modles;
 using FilmCrawler.DataAccessLayer;
-using FilmCrawler.DataAccessLayer.Entities;
 using FilmCrawler.Infrastructure.CQRS.Base;
-using FilmCrawler.Modles;
 using FluentValidation;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
@@ -51,10 +51,10 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
                     {
                         foreach (var actor in movieModel.Actor)
                         {
-                            var existedActor = _dbContext.Actor.SingleOrDefault(a => a.Url == actor.url);
+                            var existedActor = _dbContext.Actor.SingleOrDefault(a => a.Url == actor.Url);
                             if (existedActor == null)
                             {
-                                var currentActor = new Actor(actor.url, actor.name);
+                                var currentActor = new Actor(actor.Url, actor.Name);
                                 _dbContext.Actor.Add(currentActor);
                                 actorsDb.Add(currentActor);
                             }
@@ -87,10 +87,10 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
                     {
                         foreach (var director in movieModel.Director)
                         {
-                            var existedDirector = _dbContext.Director.FirstOrDefault(a => a.Url == director.url);
+                            var existedDirector = _dbContext.Director.FirstOrDefault(a => a.Url == director.Url);
                             if (existedDirector == null)
                             {
-                                var currentDirector = new Director(director.url, director.name);
+                                var currentDirector = new Director(director.Url, director.Name);
                                 _dbContext.Director.Add(currentDirector);
                                 directoresDb.Add(currentDirector);
                             }
@@ -99,15 +99,15 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
                     }
 
 
-                    var creatorsDb = new List<DataAccessLayer.Entities.Creator>();
+                    var creatorsDb = new List<Creator>();
                     if(movieModel.Creator!=null)
                     {
                         foreach (var creator in movieModel.Creator)
                         {
-                            var existedCreator = _dbContext.Creator.FirstOrDefault(a => a.Url == creator.url);
+                            var existedCreator = _dbContext.Creator.FirstOrDefault(a => a.Url == creator.Url);
                             if (existedCreator == null)
                             {
-                                var currentCreator = new DataAccessLayer.Entities.Creator(creator.url);
+                                var currentCreator = new Creator(creator.Url);
                                 _dbContext.Creator.Add(currentCreator);
                                 creatorsDb.Add(currentCreator);
                             }

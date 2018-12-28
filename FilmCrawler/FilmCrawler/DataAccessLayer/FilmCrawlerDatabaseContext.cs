@@ -1,4 +1,4 @@
-﻿using FilmCrawler.DataAccessLayer.Entities;
+﻿using FilmCrawler.Core.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmCrawler.DataAccessLayer

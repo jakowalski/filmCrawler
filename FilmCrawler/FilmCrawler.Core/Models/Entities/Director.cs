@@ -1,8 +1,6 @@
-﻿
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
-
-namespace FilmCrawler.DataAccessLayer.Entities
+namespace FilmCrawler.Core.Models.Entities
 {
     public class Director:BaseEntity
     {

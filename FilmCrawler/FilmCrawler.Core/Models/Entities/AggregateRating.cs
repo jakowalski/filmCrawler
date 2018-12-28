@@ -1,8 +1,6 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace FilmCrawler.DataAccessLayer.Entities
+namespace FilmCrawler.Core.Models.Entities
 {
     public class AggregateRating:BaseEntity
     {
