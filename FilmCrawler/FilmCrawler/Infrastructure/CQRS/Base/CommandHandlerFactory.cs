@@ -20,8 +20,17 @@ namespace FilmCrawler.Infrastructure.CQRS.Base
 
         public async Task ResolveAndExecuteAsync<TCommand>(TCommand command) where TCommand : ICommand
         {
-            var handler = (ICommandAsyncHandler<TCommand>)_asyncHandlersFactory(typeof(TCommand));
-            await handler.ExecuteAsync(command);
+            try
+            {
+                var handler = (ICommandAsyncHandler<TCommand>)_asyncHandlersFactory(typeof(TCommand));
+                await handler.ExecuteAsync(command);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
         }
 
         public void ResolveAndExecute<TCommand>(TCommand command) where TCommand : ICommand

@@ -16,6 +16,7 @@ namespace FilmCrawler.AutofacModules
 
             builder.RegisterType<AutofacCommandDispatcher>().As<ICommandDispatcher>();
             builder.RegisterType<AutofacCommandAsyncDispatcher>().As<ICommandAsyncDispatcher>();
+            
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(x => x.IsAssignableTo<ICommandAsyncHandlerBase>())
