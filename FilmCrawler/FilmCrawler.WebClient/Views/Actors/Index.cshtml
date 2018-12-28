@@ -1,0 +1,55 @@
+﻿@model FilmCrawler.WebClient.Models.ActorViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+
+@{
+    var actorModel = Model.Actors.FirstOrDefault();
+    if (actorModel != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => actorModel.Url)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => actorModel.Name)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Actors)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                var url = "https://www.imdb.com" + item.Url;
+                                <a href="@url" alt="linkToDirector">@url</a>
+                            }
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        {
+
+            var pageCount = Model.Count / 1000 + 1;
+
+            @for (var index = 0; index < pageCount; index++)
+            {
+                var currentHref = "/actors?pageIndex=" + index;
+                <a href=@currentHref>@index.ToString()</a>
+            }
+        }
+
+    }
+}
