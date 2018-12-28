@@ -1,6 +1,5 @@
-﻿
-using FilmCrawler.Infrastructure.CQRS.CommandBase.Interfaces;
-using FilmCrawler.Infrastructure.CQRS.QueryBase.Interfaces;
+﻿using FilmCrawler.Core.Infrastructure.CQRS.CommandBase.Interfaces;
+using FilmCrawler.Core.Infrastructure.CQRS.QueryBase.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmCrawler.Controllers

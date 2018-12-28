@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using FilmCrawler.Infrastructure.CQRS.Base;
+using FilmCrawler.Core.Infrastructure.CQRS.Base;
 
 namespace FilmCrawler.Features.TestQuery
 {

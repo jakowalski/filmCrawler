@@ -1,4 +1,4 @@
-﻿using FilmCrawler.Infrastructure.CQRS.QueryBase.Interfaces;
+﻿using FilmCrawler.Core.Infrastructure.CQRS.QueryBase.Interfaces;
 
 namespace FilmCrawler.Features.TestQuery
 {

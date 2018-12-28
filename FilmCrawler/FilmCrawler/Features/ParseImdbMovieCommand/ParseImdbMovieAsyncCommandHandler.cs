@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmCrawler.Core.Infrastructure.CQRS.Base;
 using FilmCrawler.Core.Models.Entities;
 using FilmCrawler.Core.Modles;
 using FilmCrawler.DataAccessLayer;
-using FilmCrawler.Infrastructure.CQRS.Base;
 using FluentValidation;
 using HtmlAgilityPack;
 using Newtonsoft.Json;

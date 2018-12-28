@@ -1,4 +1,5 @@
-﻿using FilmCrawler.Infrastructure.CQRS.CommandBase.Interfaces;
+﻿using FilmCrawler.Core.Infrastructure.CQRS.CommandBase.Interfaces;
+
 
 namespace FilmCrawler.Features.ParseImdbMovieCommand
 {
