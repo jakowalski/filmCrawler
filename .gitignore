@@ -8,3 +8,5 @@
 /FilmCrawler/FilmCrawler.Core/obj
 /FilmCrawler/FilmCrawler.Core/bin/Release/netstandard2.0
 /FilmCrawler/FilmCrawler.Core/bin/Debug/netstandard2.0
+/FilmCrawler/FilmCrawler.WebClient/bin/Debug/netcoreapp2.1
+/FilmCrawler/FilmCrawler.WebClient/obj

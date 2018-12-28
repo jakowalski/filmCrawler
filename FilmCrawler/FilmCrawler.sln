@@ -5,7 +5,15 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmCrawler", "FilmCrawler\FilmCrawler.csproj", "{5867D0E2-9F29-43BA-8588-F6C163EF58BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmCrawler.Core", "FilmCrawler.Core\FilmCrawler.Core.csproj", "{B6C625CC-99F0-4E2F-AA3D-B82BC601EE8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmCrawler.Core", "FilmCrawler.Core\FilmCrawler.Core.csproj", "{B6C625CC-99F0-4E2F-AA3D-B82BC601EE8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmCrawler.WebClient", "FilmCrawler.WebClient\FilmCrawler.WebClient.csproj", "{81831C68-F90F-40AD-B640-FE65ED08D7BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{7143C665-8A64-4C16-95E4-F1DB5CE08F83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{6CC126AE-37BE-4E3A-A8DD-BCD6C6CBC427}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0ADED72E-B551-49D4-A9A1-B14A05903F35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +29,18 @@ Global
 		{B6C625CC-99F0-4E2F-AA3D-B82BC601EE8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6C625CC-99F0-4E2F-AA3D-B82BC601EE8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6C625CC-99F0-4E2F-AA3D-B82BC601EE8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81831C68-F90F-40AD-B640-FE65ED08D7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81831C68-F90F-40AD-B640-FE65ED08D7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81831C68-F90F-40AD-B640-FE65ED08D7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81831C68-F90F-40AD-B640-FE65ED08D7BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5867D0E2-9F29-43BA-8588-F6C163EF58BB} = {7143C665-8A64-4C16-95E4-F1DB5CE08F83}
+		{B6C625CC-99F0-4E2F-AA3D-B82BC601EE8F} = {0ADED72E-B551-49D4-A9A1-B14A05903F35}
+		{81831C68-F90F-40AD-B640-FE65ED08D7BF} = {6CC126AE-37BE-4E3A-A8DD-BCD6C6CBC427}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B07D3884-99D3-4C1A-956C-21EB550D15AA}
