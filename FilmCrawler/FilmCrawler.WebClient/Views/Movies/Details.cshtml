@@ -1,0 +1,88 @@
+﻿@model FilmCrawler.WebClient.Models.MovieDetailsViewModel
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+@{
+    if (Model != null)
+    {
+        <h2>Movie title: @Model.Name</h2>
+
+        <a href="https://imdb.com/@Model.Url"><h2>Url: https://imdb.com/@Model.Url</h2></a>
+        if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <h2>Description</h2>
+
+            <p>@Model.Description</p>
+        }
+
+
+        <h2>Published date: @Model.DatePublished</h2>
+        <h2>Keywords: @Model.Keywords</h2>
+
+        if (Model.Creator.Count > 0)
+        {
+            <h2>Creators:</h2>
+            foreach (var c in Model.Creator)
+            {
+                <a href="https://imdb.com/@c.Url">https://imdb.com/@c.Url</a>
+            }
+        }
+        if (Model.Director.Count > 0)
+        {
+            <h2>Directos:</h2>
+            foreach (var c in Model.Director)
+            {
+                <div class="col-6">
+                    <p>Name: @c.Name</p>
+                </div>
+                <div class="col-6">
+                    <a href="https://imdb.com/@c.Url">https://imdb.com/@c.Url</a>
+                </div>
+
+            }
+        }
+        if (Model.Actor.Count > 0)
+        {
+            <h2>Actors:</h2>
+            foreach (var c in Model.Actor)
+            {
+                <div class="col-6">
+                    <p>Name: @c.Name</p>
+                </div>
+                <div class="col-6">
+                    <a href="https://imdb.com/@c.Url">https://imdb.com/@c.Url</a>
+                </div>
+
+            }
+        }
+        if (Model.Genre.Count > 0)
+        {
+            <h2>Genres:</h2>
+            foreach (var c in Model.Genre)
+            {
+                <p>Name: @c</p>
+            }
+        }
+        if (Model.AggregateRating != null)
+        {
+            <h2>AgregateRating:</h2>
+
+            <p>RatingCount: @Model.AggregateRating.RatingCount</p>
+            <p>BestRating: @Model.AggregateRating.BestRating</p>
+            <p>WorstRating: @Model.AggregateRating.WorstRating</p>
+            <p>RatingValue: @Model.AggregateRating.RatingValue</p>
+        }
+        if (!string.IsNullOrEmpty(Model.Review.Name))
+        {
+            <h2>Review:</h2>
+            
+            <p>Name: @Model.Review.Name</p>
+            <p>Review body: @Model.Review.ReviewBody</p>           
+        }
+    }
+
+
+
+}

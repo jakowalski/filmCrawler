@@ -1,5 +1,6 @@
 ﻿using FilmCrawler.Core.Infrastructure.CQRS.CommandBase.Interfaces;
 using FilmCrawler.Core.Infrastructure.CQRS.QueryBase.Interfaces;
+using FilmCrawler.WebClient.Features.GetMovieDetailsQuery;
 using FilmCrawler.WebClient.Features.GetMoviesCountQuery;
 using FilmCrawler.WebClient.Features.GetMoviesQuery;
 using FilmCrawler.WebClient.Models;
@@ -22,6 +23,13 @@ namespace FilmCrawler.WebClient.Controllers
             var result = new MoviesViewModel { Movies = moviesResult.Movies, MoviesCount = moviesCount };
 
             return View(result);
+        }
+        public async Task<IActionResult> Details(int movieId)
+        {
+            var moviesResult = await _queryHandlerFactory.ResolveAndExecuteAsync<GetMovieDetailsQuery, GetMovieDetailsQueryResult>(new GetMovieDetailsQuery(movieId));
+
+
+            return View(moviesResult.MovieDetailsViewModel);
         }
     }
 }

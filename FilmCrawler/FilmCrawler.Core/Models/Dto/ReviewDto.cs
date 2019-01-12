@@ -11,5 +11,14 @@ namespace FilmCrawler.Core.Models.Dto
         public string ReviewBody { get; set; }
         public ReviewRatingDto ReviewRating { get; set; }
 
+        public ReviewDto()
+        {
+
+        }
+        public ReviewDto(string name,string reviewBody)
+        {
+            Name = name;
+            ReviewBody = reviewBody;
+        }
     }
 }
