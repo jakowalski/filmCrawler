@@ -15,7 +15,8 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
     public class ParseImdbMovieAsyncCommandHandler:BaseCommandAsyncHandler<ParseImdbMovieCommand>
     {
         private readonly FilmCrawlerDatabaseContext _dbContext;
-        public ParseImdbMovieAsyncCommandHandler(IValidatorFactory validatorFactory, FilmCrawlerDatabaseContext dbContext) : base(validatorFactory)
+        public ParseImdbMovieAsyncCommandHandler(IValidatorFactory validatorFactory, 
+            FilmCrawlerDatabaseContext dbContext) : base(validatorFactory)
         {
             _dbContext = dbContext;
         }
@@ -87,7 +88,8 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
                     {
                         foreach (var director in movieModel.Director)
                         {
-                            var existedDirector = _dbContext.Director.FirstOrDefault(a => a.Url == director.Url);
+                            var existedDirector = _dbContext.Director.
+                                                    FirstOrDefault(a => a.Url == director.Url);
                             if (existedDirector == null)
                             {
                                 var currentDirector = new Director(director.Url, director.Name);
@@ -115,7 +117,8 @@ namespace FilmCrawler.Features.ParseImdbMovieCommand
                         _dbContext.SaveChanges();
                     }
                    
-                    _dbContext.ImdbMovie.Add(ImdbMovie.CreateImdbMovie(movieModel,actorsDb,genresDb,directoresDb,creatorsDb));
+                    _dbContext.ImdbMovie.Add(ImdbMovie.CreateImdbMovie(movieModel,actorsDb,genresDb,
+                        directoresDb,creatorsDb));
                     await _dbContext.SaveChangesAsync();
                 }
 

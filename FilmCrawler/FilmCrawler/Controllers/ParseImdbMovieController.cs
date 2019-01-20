@@ -10,7 +10,8 @@ namespace FilmCrawler.Controllers
     [ApiController]
     public class ParseImdbMovieController : BaseApiController
     {
-        public ParseImdbMovieController(ICommandHandlerFactory commandHandlerFactory, IQueryHandlerFactory queryHandlerFactory) : base(commandHandlerFactory, queryHandlerFactory)
+        public ParseImdbMovieController(ICommandHandlerFactory commandHandlerFactory, 
+            IQueryHandlerFactory queryHandlerFactory) : base(commandHandlerFactory, queryHandlerFactory)
         {
         }
 
