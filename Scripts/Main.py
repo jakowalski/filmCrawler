@@ -2,9 +2,9 @@ import requests
 import time
 import random
 
-basePath="http://localhost:50309/api/ParseImdbMovie?fileName=tt0"
+basePath="https://filmcrawlerbackendservice.azurewebsites.net/api/ParseImdbMovie?fileName=tt0"
 
-for i in range(410000,411000):
+for i in range(910000,911000):
     strIndex=str(i)
     print("Current movie index "+strIndex)
     r = requests.post(basePath+strIndex)

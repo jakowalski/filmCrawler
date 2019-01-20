@@ -8,13 +8,13 @@ namespace FilmCrawler.DataAccessLayer
         public FilmCrawlerDatabaseContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<FilmCrawlerDatabaseContext>();
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-M94H1SH\\SQLEXPRESS;Initial Catalog=FilmCrawlerDb;Trusted_Connection=True;MultipleActiveResultSets=true;");
+            optionsBuilder.UseSqlServer("Server=tcp:filmcrawlerdbserver.database.windows.net,1433;Initial Catalog=FilmCrawlerDb;Persist Security Info=False;User ID=sidrox;Password=TechnikiMultimedialne123;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             return new FilmCrawlerDatabaseContext(optionsBuilder.Options);
         }
         public static DbContextOptions GetDbOptions()
         {
             var optionsBuilder = new DbContextOptionsBuilder<FilmCrawlerDatabaseContext>();
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-M94H1SH\\SQLEXPRESS;Initial Catalog=FilmCrawlerDb;Trusted_Connection=True;MultipleActiveResultSets=true;");
+            optionsBuilder.UseSqlServer("Server=tcp:filmcrawlerdbserver.database.windows.net,1433;Initial Catalog=FilmCrawlerDb;Persist Security Info=False;User ID=sidrox;Password=TechnikiMultimedialne123;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             return optionsBuilder.Options;
         }
     }
